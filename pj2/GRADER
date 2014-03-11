@@ -67,94 +67,70 @@ CLASSES
 
 public class Best() 
 public class Board() 
+public class PlayerNetwork()
 
-MACHINEPLAYER() MODULES
+BEST CLASS
+  // Field. Move for this class.
+  Move move;
+  // Field. Score of this move.
+  int score;
 
-  // New field for MachinePlayer. Contains variable search depth set by the constructor.
-  public int searchDepth;
 
-  // Creates a machine player with the given color.  Color is either 0 (black)
-  // or 1 (white).  (White has the first move.)
-  // Implemented by: Sam Holladay
-  MachinePlayer(int color) {
-  }
+PLAYERNETWORK CLASS
 
-  // Creates a machine player with the given color and search depth.  Color is
-  // either 0 (black) or 1 (white).  (White has the first move.)
-  // Implemented by: Vidush Mukund
-  public MachinePlayer(int color, int searchDepth) {
-  }
-
-  // Returns a new move by "this" player.  Internally records the move (updates
-  // the internal game board) as a move by "this" player.
-  // Implemented by: Sam Holladay
-  public Move chooseMove() {
-    return new Move();
-  } 
-
-  // If the Move m is legal, records the move as a move by the opponent
-  // (updates the internal game board) and returns true.  If the move is
-  // illegal, returns false without modifying the internal state of "this"
-  // player.  This method allows your opponents to inform you of their moves.
-  // Implemented by: Vidush Mukund
-  public boolean opponentMove(Move m) {
-    return false;
-  }
-
-  // If the Move m is legal, records the move as a move by "this" player
-  // (updates the internal game board) and returns true.  If the move is
-  // illegal, returns false without modifying the internal state of "this"
-  // player.  This method is used to help set up "Network problems" for your
-  // player to solve.
-  // Implemented by: Vidush Mukund
-  public boolean forceMove(Move m) {
-    return false;
-  }
+  // Field. Player this network is describing.
+  protected MachinePlayer player;
   
-  // Within MachinePlayer() class.
-  // Determines whether Board board contains any winning networks for the given player.
-  // Algorithm returns true if the board has a winning network, and false if it doesn't.
-  // Implemented by: Woody Chung
-  public boolean hasWinningNetwork(Board board) {
-    return false;
-  }
+  // Method
+  // Constructor of this player's network.
+  public PlayerNetwork(MachinePlayer thisPlayer)
   
-  // Within MachinePlayer() class.
-  // Returns true if the given Move move is valid on the given Board board. False if invalid.
-  // Implemented by: Woody Chung
-  public boolean isValidMove(Move move, Board board) {
-    return false;
-  }
-  
-  // Within MachinePlayer() class.
-  // Returns an array of all valid moves on the given board. Uses isValidMove to check.
-  // Used in the searchTree method.
-  // Implemented by: Woody Chung
-  public Move[] getValidMoves(Board board) {
-  }
-  
-  // Sets the given square to the color of this player.
-  // Implemented by: Vidush Mukund
-  public void setSquare(int x, int y) {
-  }
-  
-BOARD() CLASSES
-
-  // Constructor, creates an empty board.
-  // Implemented by: Sam Holladay
-  public Board() {
-  }
-
-  // Returns value of current ("this") board. Assigns maximum positive values to win by side,
-  // minimum negative values to win by opponent. Intermediate values to board where neither
-  // player has committed a network. 
-  // Implemented by: Sam Holladay
-  public double evaluateBoard(boolean side) {
-  }
-  
+  // Method
   // Implements minimax alpha-beta search algorithm, based on lecture pseudocode.
   // Searches game tree of this board, to a given searchDepth.
   // The scores of each Best move are obtained from evaluateBoard.
   // Implemented by: Vidush Mukund
-  public Best searchTree(boolean side, int alpha, int beta, int searchDepth) {
-  }
+  public Best searchTree(int alpha, int beta, int searchDepth, Board board)
+
+  // Method
+  // Returns true if the given Move move is valid on the given Board board. False if invalid.
+  // Implemented by: Woody Chung
+  public boolean isValidMove(Move move, Board board) 
+  
+  // Method
+  // Returns an array of all valid moves on the given board. Uses isValidMove to check.
+  // Used in the searchTree method.
+  // Implemented by: Woody Chung
+  public Move[] getValidMoves(Board board) 
+  
+  
+BOARD() CLASS
+
+  // Field: Board is 8x8 array of bools. Null means empty; true means this player occupies; false means opponent player occupies.
+  protected boolean[][] board;
+  // Field: which player this board describes.
+  protected MachinePlayer player;
+
+  // Method
+  // Constructor, creates an empty board for this player (all values are null).
+  // Implemented by: Sam Holladay
+  public Board(MachinePlayer thisPlayer) 
+  
+  // Method
+  // Sets the given square to the color of this player.
+  // Implemented by: Vidush Mukund
+  public void setSquare(int x, int y) 
+
+  // Method
+  // Returns value of current ("this") board. Assigns maximum positive values to win by side,
+  // minimum negative values to win by opponent. Intermediate values to board where neither
+  // player has committed a network. 
+  // Implemented by: Sam Holladay
+  public double evaluateBoard()
+  
+  // Method
+  // Determines whether Board board contains any winning networks for the given player.
+  // Algorithm returns true if the board has a winning network, and false if it doesn't.
+  // Implemented by: Woody Chung
+  public boolean hasWinningNetwork() 
+  
