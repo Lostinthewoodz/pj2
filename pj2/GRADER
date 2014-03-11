@@ -1,0 +1,160 @@
+                                     GRADER
+
+Name of student running submit: Woody Chung
+Login of student running submit: cs61b-aqa
+
+Second team member's name: Vidush Mukund
+Second team member's login: cs61b-dn
+
+Third team member's name (if any): Sam Holladay
+Third team member's login: cs61b-dm
+
+IMPORTANT:  Once you've submitted Project 2 once, the same team member should
+submit always.  If a different teammate must submit, inform cs61b@cory.eecs of
+all the details.  Include a complete list of team members, and let us know
+which submission you want graded.
+
+If you've submitted your project once, or even written a substantial amount of
+code together, you may not change partners without the permission of the
+instructor.
+===============================================================================
+Does your program compile without errors?
+
+
+Have you tested your program on the 61B lab machines?
+
+
+Did you successfully implement game tree search?  Did you successfully
+implement alpha-beta pruning?  Are there any limitations on it?  What is the
+default number of search levels set by the one-parameter MachinePlayer
+constructor (or is it a variable-depth search)?
+
+
+Describe your board evaluation function in some detail.
+
+
+Does your MachinePlayer use any special method of choosing the first few moves?
+
+
+Is there anything else the graders should know to help them read your project?
+
+
+
+Describe the classes, modules, and interfaces you designed before and while you
+implemented the project.  Your description should include:
+  -  A list of the classes your program uses.
+  -  A list of each of the "modules" used in or by MachinePlayer, similar to
+     the list in the "Teamwork" section of the README (but hopefully more
+     detailed).  (If you're using a list class, that should probably count as
+     a separate module.)
+  -  For each module, list the class(es) the module is implemented in.
+  -  For each module, say which of your team members implemented it.
+  -  For each module, describe its interface--specifically, the prototype and
+     behavior of each method that is available for external callers (outside
+     the module) to call.  Don't include methods that are only meant to be
+     called from within the module.
+
+     For each method, provide (1) a method prototype and (2) a complete,
+     unambiguous description of the behavior of the method/module.  This
+     description should also appear before the method in your code's comments.
+
+You will probably need to change some of your design decisions as you go; be
+sure to modify this file to reflect these changes before you submit your
+project.  Your design of classes and interfaces will be worth 10% of your
+grade.
+
+CLASSES
+
+public class Best() 
+public class Board() 
+
+MACHINEPLAYER() MODULES
+
+  // New field for MachinePlayer. Contains variable search depth set by the constructor.
+  public int searchDepth;
+
+  // Creates a machine player with the given color.  Color is either 0 (black)
+  // or 1 (white).  (White has the first move.)
+  // Implemented by: Sam Holladay
+  MachinePlayer(int color) {
+  }
+
+  // Creates a machine player with the given color and search depth.  Color is
+  // either 0 (black) or 1 (white).  (White has the first move.)
+  // Implemented by: Vidush Mukund
+  public MachinePlayer(int color, int searchDepth) {
+  }
+
+  // Returns a new move by "this" player.  Internally records the move (updates
+  // the internal game board) as a move by "this" player.
+  // Implemented by: Sam Holladay
+  public Move chooseMove() {
+    return new Move();
+  } 
+
+  // If the Move m is legal, records the move as a move by the opponent
+  // (updates the internal game board) and returns true.  If the move is
+  // illegal, returns false without modifying the internal state of "this"
+  // player.  This method allows your opponents to inform you of their moves.
+  // Implemented by: Vidush Mukund
+  public boolean opponentMove(Move m) {
+    return false;
+  }
+
+  // If the Move m is legal, records the move as a move by "this" player
+  // (updates the internal game board) and returns true.  If the move is
+  // illegal, returns false without modifying the internal state of "this"
+  // player.  This method is used to help set up "Network problems" for your
+  // player to solve.
+  // Implemented by: Vidush Mukund
+  public boolean forceMove(Move m) {
+    return false;
+  }
+  
+  // Within MachinePlayer() class.
+  // Determines whether Board board contains any winning networks for the given player.
+  // Algorithm returns true if the board has a winning network, and false if it doesn't.
+  // Implemented by: Woody Chung
+  public boolean hasWinningNetwork(Board board) {
+    return false;
+  }
+  
+  // Within MachinePlayer() class.
+  // Returns true if the given Move move is valid on the given Board board. False if invalid.
+  // Implemented by: Woody Chung
+  public boolean isValidMove(Move move, Board board) {
+    return false;
+  }
+  
+  // Within MachinePlayer() class.
+  // Returns an array of all valid moves on the given board. Uses isValidMove to check.
+  // Used in the searchTree method.
+  // Implemented by: Woody Chung
+  public Move[] getValidMoves(Board board) {
+  }
+  
+  // Sets the given square to the color of this player.
+  // Implemented by: Vidush Mukund
+  public void setSquare(int x, int y) {
+  }
+  
+BOARD() CLASSES
+
+  // Constructor, creates an empty board.
+  // Implemented by: Sam Holladay
+  public Board() {
+  }
+
+  // Returns value of current ("this") board. Assigns maximum positive values to win by side,
+  // minimum negative values to win by opponent. Intermediate values to board where neither
+  // player has committed a network. 
+  // Implemented by: Sam Holladay
+  public double evaluateBoard(boolean side) {
+  }
+  
+  // Implements minimax alpha-beta search algorithm, based on lecture pseudocode.
+  // Searches game tree of this board, to a given searchDepth.
+  // The scores of each Best move are obtained from evaluateBoard.
+  // Implemented by: Vidush Mukund
+  public Best searchTree(boolean side, int alpha, int beta, int searchDepth) {
+  }
